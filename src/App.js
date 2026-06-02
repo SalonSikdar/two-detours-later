@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { FaInstagram } from 'react-icons/fa';
 import './App.css';
 
 const weddingDate = new Date('2027-01-08T07:00:00+05:30');
@@ -53,7 +54,7 @@ function App() {
         <div className="hero-copy">
           <p className="eyebrow">January 8, 2027 · 7:00 AM IST</p>
           <h1>Saloni & Shyamal</h1>
-          <h3>#twoDetoursLater</h3>
+          <h2>#twoDetoursLater</h2>
           <p className="hero-text">
             A calm morning ceremony, a room full of favorite people, and the
             beginning of the next beautiful detour.
@@ -96,17 +97,39 @@ function App() {
           <p className="eyebrow">Our Story</p>
           <h2>From a small hello to a lifetime promise</h2>
         </div>
-        <div className="story-layout">
-          <p>
-            This space is for the story only the two of you could have written:
-            the first meeting, the early conversations, the trips, the laughter,
-            and the quiet moments that made everything feel certain.
-          </p>
-          <p>
-            Add a few photos, favorite memories, or a note to guests who have
-            been part of the journey. Keep it personal, warm, and unmistakably
-            yours.
-          </p>
+        <div className="story-timeline" aria-label="Our relationship timeline">
+          <article className="timeline-item">
+            <span className="timeline-date">First Hello</span>
+            <h3>The detour that started it all</h3>
+            <p>
+              A simple conversation turned into the kind of ease that makes two
+              people want to keep finding their way back to each other.
+            </p>
+          </article>
+          <article className="timeline-item">
+            <span className="timeline-date">The Good Miles</span>
+            <h3>Little plans became favorite memories</h3>
+            <p>
+              Trips, late calls, shared meals, and ordinary days slowly became
+              the story everyone now knows was quietly becoming forever.
+            </p>
+          </article>
+          <article className="timeline-item">
+            <span className="timeline-date">The Promise</span>
+            <h3>A yes to every season ahead</h3>
+            <p>
+              Somewhere between laughter and certainty, the next chapter became
+              clear: one home, one team, and a lifetime of beautiful detours.
+            </p>
+          </article>
+          <article className="timeline-item">
+            <span className="timeline-date">8 Jan 2027</span>
+            <h3>The wedding morning</h3>
+            <p>
+              With family and friends around them, Saloni and Shyamal begin the
+              next part of the journey together.
+            </p>
+          </article>
         </div>
       </section>
 
@@ -163,6 +186,25 @@ function App() {
           </div>
         </div>
       </section>
+
+      <footer className="site-footer">
+        <div>
+          <a className="footer-brand" href="#home">
+            Two Detours Later
+          </a>
+          <p>Made with love for Saloni & Shyamal.</p>
+        </div>
+        <a
+          className="instagram-link"
+          href="https://www.instagram.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit our Instagram"
+        >
+          <FaInstagram aria-hidden="true" />
+          <span>Instagram</span>
+        </a>
+      </footer>
     </main>
   );
 }
