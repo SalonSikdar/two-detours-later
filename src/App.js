@@ -28,7 +28,7 @@ function SiteNav() {
         <a href={`${homePath}#story`}>Story</a>
         <a href={aboutPath}>About Us</a>
         <a href={`${homePath}#journal`}>Blog</a>
-        <a href={`${homePath}#details`}>Details</a>
+        <a href={`${homePath}#itinerary`}>Itinerary</a>
       </div>
     </nav>
   );
@@ -229,8 +229,8 @@ function WeddingPage() {
             beginning of the next beautiful detour.
           </p>
           <div className="hero-actions">
-            <a className="primary-action" href="#details">
-              View Details
+            <a className="primary-action" href="#itinerary">
+              View Itinerary
             </a>
             <a className="secondary-action" href="#journal">
               Read Updates
@@ -335,12 +335,12 @@ function WeddingPage() {
         </div>
       </section>
 
-      <section className="content-section details-section" id="details">
+      <section className="content-section itinerary-section" id="itinerary">
         <div className="section-heading">
           <p className="eyebrow">The Day</p>
-          <h2>Ceremony details</h2>
+          <h2>Ceremony itinerary</h2>
         </div>
-        <div className="details-grid">
+        <div className="itinerary-grid">
           <div>
             <span>Date & Time</span>
             <strong>8 January 2027, 7:00 AM</strong>

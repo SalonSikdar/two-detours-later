@@ -45,7 +45,7 @@ h2,
 h3,
 .photo-placeholder span,
 .countdown-tile strong,
-.details-grid strong {
+.itinerary-grid strong {
   font-family: var(--title-font);
 }
 
@@ -359,7 +359,7 @@ h3 {
 }
 
 .journal-grid span,
-.details-grid span {
+.itinerary-grid span {
   color: var(--gold);
   display: block;
   font-size: 0.75rem;
@@ -374,34 +374,34 @@ h3 {
   line-height: 1.65;
 }
 
-.details-section {
+.itinerary-section {
   background: #085E55;
   color: #FDFCE9;;
 }
 
-.details-section h2,
-.details-section .eyebrow {
+.itinerary-section h2,
+.itinerary-section .eyebrow {
   color: #FDFCE9;;
 }
 
-.details-section .details-grid span,
-.details-section .details-grid strong {
+.itinerary-section .itinerary-grid span,
+.itinerary-section .itinerary-grid strong {
   color: #FDFCE9;;
 }
 
-.details-grid {
+.itinerary-grid {
   display: grid;
   gap: 1px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.details-grid div {
+.itinerary-grid div {
   background: rgba(204, 166, 129, 0.1);
   min-height: 10rem;
   padding: 1.35rem;
 }
 
-.details-grid strong {
+.itinerary-grid strong {
   display: block;
   font-size: clamp(1.25rem, 2vw, 1.7rem);
   line-height: 1.25;
@@ -643,7 +643,7 @@ h3 {
   }
 
   .journal-grid,
-  .details-grid {
+  .itinerary-grid {
     grid-template-columns: 1fr;
   }
 
