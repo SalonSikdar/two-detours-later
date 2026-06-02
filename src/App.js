@@ -52,7 +52,8 @@ function App() {
       <section className="hero" id="home">
         <div className="hero-copy">
           <p className="eyebrow">January 8, 2027 · 7:00 AM IST</p>
-          <h1>Saloni & Shyamal are getting married</h1>
+          <h1>Saloni & Shyamal</h1>
+          <h3>#twoDetoursLater</h3>
           <p className="hero-text">
             A calm morning ceremony, a room full of favorite people, and the
             beginning of the next beautiful detour.
