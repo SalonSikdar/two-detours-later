@@ -462,6 +462,113 @@ h3 {
   width: 1.25rem;
 }
 
+.about-hero {
+  align-items: center;
+  background:
+    radial-gradient(circle at 80% 18%, rgba(14, 140, 123, 0.18), transparent 28rem),
+    linear-gradient(135deg, #FDFCE9 0%, rgba(204, 166, 129, 0.38) 100%);
+  display: grid;
+  min-height: calc(78vh - 72px);
+  padding: clamp(4rem, 9vw, 8rem) clamp(1rem, 5vw, 5.5rem);
+}
+
+.about-hero h1 {
+  max-width: 58rem;
+}
+
+.about-hero p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.7;
+  max-width: 42rem;
+}
+
+.about-section {
+  min-height: 70vh;
+  padding: clamp(5rem, 10vw, 9rem) clamp(1rem, 5vw, 5.5rem);
+}
+
+.profile-section {
+  background: var(--wine);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.profile-card {
+  background: rgba(253, 252, 233, 0.08);
+  border: 1px solid rgba(253, 252, 233, 0.18);
+  color: #FDFCE9;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.profile-card > span,
+.together-grid span {
+  color: var(--teal);
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.9rem;
+  text-transform: uppercase;
+}
+
+.profile-card h2 {
+  color: #FDFCE9;
+  margin-bottom: 2rem;
+}
+
+.profile-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.profile-list p {
+  color: rgba(253, 252, 233, 0.82);
+  font-size: 1.08rem;
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+.profile-list strong {
+  color: #FDFCE9;
+  display: block;
+  font-family: var(--title-font);
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.together-section {
+  background:
+    radial-gradient(circle at 18% 16%, rgba(90, 16, 32, 0.1), transparent 24rem),
+    #FDFCE9;
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+}
+
+.together-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.together-grid article {
+  background: rgba(204, 166, 129, 0.28);
+  border: 1px solid rgba(90, 16, 32, 0.14);
+  min-height: 14rem;
+  padding: 1.35rem;
+}
+
+.together-grid article:last-child {
+  grid-column: 1 / -1;
+}
+
+.together-grid p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
 .not-found-page {
   align-items: center;
   background:
@@ -517,7 +624,9 @@ h3 {
 
   .hero,
   .countdown-section,
-  .content-section {
+  .content-section,
+  .profile-section,
+  .together-section {
     grid-template-columns: 1fr;
   }
 
@@ -541,6 +650,10 @@ h3 {
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .together-grid {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -4,6 +4,7 @@ import './App.css';
 
 const weddingDate = new Date('2027-01-08T07:00:00+05:30');
 const homePath = process.env.PUBLIC_URL || '/';
+const aboutPath = `${homePath === '/' ? '' : homePath}/about`;
 
 function getTimeLeft() {
   const difference = weddingDate.getTime() - Date.now();
@@ -15,6 +16,48 @@ function getTimeLeft() {
     minutes: Math.floor((safeDifference / (1000 * 60)) % 60),
     seconds: Math.floor((safeDifference / 1000) % 60),
   };
+}
+
+function SiteNav() {
+  return (
+    <nav className="site-nav" aria-label="Primary navigation">
+      <a className="brand" href={homePath}>
+        #TwoDetoursLater
+      </a>
+      <div className="nav-links">
+        <a href={`${homePath}#story`}>Story</a>
+        <a href={aboutPath}>About Us</a>
+        <a href={`${homePath}#journal`}>Blog</a>
+        <a href={`${homePath}#details`}>Details</a>
+      </div>
+    </nav>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="site-footer">
+      <div>
+        <a className="footer-brand" href={homePath}>
+          #TwoDetoursLater
+        </a>
+        <p>
+          Made with <FaHeart className="footer-heart" aria-label="love" /> by
+          Gogo & Mithi.
+        </p>
+      </div>
+      <a
+        className="instagram-link"
+        href="https://www.instagram.com/twodetourslater/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit our Instagram"
+      >
+        <FaInstagram aria-hidden="true" />
+        <span>Instagram</span>
+      </a>
+    </footer>
+  );
 }
 
 function NotFoundPage() {
@@ -36,8 +79,120 @@ function NotFoundPage() {
   );
 }
 
-function App() {
-  const isKnownRoute = window.location.pathname === homePath;
+function AboutPage() {
+  return (
+    <main className="wedding-page">
+      <SiteNav />
+
+      <section className="about-hero">
+        <p className="eyebrow">About Us</p>
+        <h1>Two people, many detours, one very shared playlist.</h1>
+        <p>
+          A little more about Saloni, Shyamal, the life they are building, and
+          the things that make them wonderfully, specifically them.
+        </p>
+      </section>
+
+      <section className="about-section profile-section">
+        <article className="profile-card">
+          <span>Saloni</span>
+          <h2>Born curious, built bright</h2>
+          <div className="profile-list">
+            <p><strong>Birth</strong> Add Saloni's hometown, birthday, or favorite childhood memory.</p>
+            <p><strong>Work</strong> A space for what she does, what she is proud of, and how she shows up.</p>
+            <p><strong>Life</strong> The rituals, friendships, and little joys that make her days feel full.</p>
+            <p><strong>Passion</strong> The hobbies, causes, art, books, food, or adventures she never stops talking about.</p>
+          </div>
+        </article>
+
+        <article className="profile-card">
+          <span>Shyamal</span>
+          <h2>Steady heart, excellent detour instincts</h2>
+          <div className="profile-list">
+            <p><strong>Birth</strong> Add Shyamal's hometown, birthday, or the story everyone still retells.</p>
+            <p><strong>Work</strong> A space for his craft, ambitions, and the work that keeps him thinking.</p>
+            <p><strong>Life</strong> The people, routines, and small comforts that keep him grounded.</p>
+            <p><strong>Passion</strong> The interests he lights up about, from weekend plans to lifelong obsessions.</p>
+          </div>
+        </article>
+      </section>
+
+      <section className="about-section together-section" id="favorite-foods">
+        <div className="section-heading">
+          <p className="eyebrow">Together</p>
+          <h2>Favorite Foods</h2>
+        </div>
+        <div className="together-grid">
+          <article>
+            <span>Favorite Foods</span>
+            <h3>Comfort, cravings, and snack diplomacy</h3>
+            <p>Add the dishes you agree on, the dishes you debate, and the meals that became memories.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="about-section together-section" id="favorite-music">
+        <div className="section-heading">
+          <p className="eyebrow">Together</p>
+          <h2>Favorite Music</h2>
+        </div>
+        <div className="together-grid">
+          <article>
+            <span>Favorite Music</span>
+            <h3>His songs, her songs, our songs</h3>
+            <p>List Saloni's favorites, Shyamal's favorites, and the tracks that belong to both of you.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="about-section together-section" id="pets">
+        <div className="section-heading">
+          <p className="eyebrow">Together</p>
+          <h2>Pets</h2>
+        </div>
+        <div className="together-grid">
+          <article>
+            <span>Pets</span>
+            <h3>The tiny bosses of the household</h3>
+            <p>Add names, photos, dramatic habits, snack preferences, and who they secretly love more.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="about-section together-section" id="travel-stories">
+        <div className="section-heading">
+          <p className="eyebrow">Together</p>
+          <h2>Travel Stories</h2>
+        </div>
+        <div className="together-grid">
+          <article>
+            <span>Travel Stories</span>
+            <h3>Maps, misses, and perfect wrong turns</h3>
+            <p>Share the trips, delayed trains, scenic routes, and places that taught you how well you travel together.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="about-section together-section" id="socials">
+        <div className="section-heading">
+          <p className="eyebrow">Together</p>
+          <h2>Socials</h2>
+        </div>
+        <div className="together-grid">
+          <article>
+            <span>Socials</span>
+            <h3>Where the updates live</h3>
+            <p>Link Instagram, photo albums, wedding updates, or any place guests can follow along.</p>
+          </article>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
+function WeddingPage() {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft);
 
   useEffect(() => {
@@ -58,22 +213,11 @@ function App() {
     [timeLeft]
   );
 
-  if (!isKnownRoute) {
-    return <NotFoundPage />;
-  }
+  
 
   return (
     <main className="wedding-page">
-      <nav className="site-nav" aria-label="Primary navigation">
-        <a className="brand" href="#home">
-          #TwoDetoursLater
-        </a>
-        <div className="nav-links">
-          <a href="#story">Story</a>
-          <a href="#journal">Blog</a>
-          <a href="#details">Details</a>
-        </div>
-      </nav>
+      <SiteNav />
 
       <section className="hero" id="home">
         <div className="hero-copy">
@@ -212,29 +356,35 @@ function App() {
         </div>
       </section>
 
-      <footer className="site-footer">
-        <div>
-          <a className="footer-brand" href="#home">
-            #TwoDetoursLater
-          </a>
-          <p>
-            Made with <FaHeart className="footer-heart" aria-label="love" /> by
-            Gogo & Mithi.
-          </p>
-        </div>
-        <a
-          className="instagram-link"
-          href="https://www.instagram.com/twodetourslater/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit our Instagram"
-        >
-          <FaInstagram aria-hidden="true" />
-          <span>Instagram</span>
-        </a>
-      </footer>
+      <SiteFooter />
     </main>
   );
+}
+
+function App() {
+  const pathname = window.location.pathname;
+
+  function isKnownRoute(path) {
+    const normalize = (p) => (p.endsWith('/') && p !== '/' ? p.slice(0, -1) : p);
+    const p = normalize(path);
+    const home = normalize(homePath);
+    const about = normalize(aboutPath);
+
+    if (p === about) return 'about';
+    if (p === home) return 'home';
+    return null;
+  }
+
+  const route = isKnownRoute(pathname);
+  if (route === 'about') {
+    return <AboutPage />;
+  }
+
+  if (route === 'home') {
+    return <WeddingPage />;
+  }
+
+  return <NotFoundPage />;
 }
 
 export default App;
