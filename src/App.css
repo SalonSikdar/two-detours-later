@@ -230,7 +230,8 @@ h3 {
 }
 
 .countdown-section {
-  align-items: end;
+  align-items: center;
+  align-content: center;
   background: var(--wine);
   border-block: 1px solid rgba(204, 166, 129, 0.22);
   display: grid;
@@ -284,7 +285,9 @@ h3 {
 }
 
 .story-section {
-  background: linear-gradient(90deg, rgba(14, 140, 123, 0.16), rgba(204, 166, 129, 0));
+  background:
+    radial-gradient(circle at 18% 20%, rgba(14, 140, 123, 0.12), transparent 24rem),
+    linear-gradient(135deg, #FDFCE9 0%, rgba(204, 166, 129, 0.34) 100%);
 }
 
 .story-timeline {
@@ -480,7 +483,7 @@ h3 {
   }
 
   .countdown-section {
-    align-items: start;
+    align-items: center;
   }
 
   .journal-grid,
