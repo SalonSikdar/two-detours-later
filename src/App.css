@@ -462,6 +462,53 @@ h3 {
   width: 1.25rem;
 }
 
+.not-found-page {
+  align-items: center;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(14, 140, 123, 0.22), transparent 24rem),
+    linear-gradient(135deg, #5A1020 0%, #085E55 100%);
+  color: #FDFCE9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding: clamp(2rem, 6vw, 5rem);
+  text-align: center;
+}
+
+.not-found-logo {
+  display: inline-flex;
+  margin-bottom: 2rem;
+}
+
+.not-found-logo img {
+  height: clamp(5rem, 16vw, 9rem);
+  width: clamp(5rem, 16vw, 9rem);
+}
+
+.not-found-page .eyebrow,
+.not-found-page h1 {
+  color: #FDFCE9;
+}
+
+.not-found-page h1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  max-width: 52rem;
+}
+
+.not-found-page p:not(.eyebrow) {
+  color: rgba(253, 252, 233, 0.82);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.7;
+  max-width: 38rem;
+}
+
+.not-found-page .primary-action {
+  background: #FDFCE9;
+  color: #5A1020;
+  margin-top: 1.25rem;
+}
+
 @media (max-width: 860px) {
   .site-nav {
     align-items: flex-start;

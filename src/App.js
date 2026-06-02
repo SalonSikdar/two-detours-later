@@ -3,6 +3,7 @@ import { FaHeart, FaInstagram } from 'react-icons/fa';
 import './App.css';
 
 const weddingDate = new Date('2027-01-08T07:00:00+05:30');
+const homePath = process.env.PUBLIC_URL || '/';
 
 function getTimeLeft() {
   const difference = weddingDate.getTime() - Date.now();
@@ -16,7 +17,27 @@ function getTimeLeft() {
   };
 }
 
+function NotFoundPage() {
+  return (
+    <main className="not-found-page">
+      <a className="not-found-logo" href={homePath} aria-label="Go home">
+        <img src={`${process.env.PUBLIC_URL}/2detourslater.svg`} alt="#TwoDetoursLater" />
+      </a>
+      <p className="eyebrow">404 · Detour Detected</p>
+      <h1>This route missed the entourage.</h1>
+      <p>
+        The page you wanted took a wrong turn, got distracted by wedding snacks,
+        and never made it to the venue.
+      </p>
+      <a className="primary-action" href={homePath}>
+        Back to the Wedding
+      </a>
+    </main>
+  );
+}
+
 function App() {
+  const isKnownRoute = window.location.pathname === homePath;
   const [timeLeft, setTimeLeft] = useState(getTimeLeft);
 
   useEffect(() => {
@@ -36,6 +57,10 @@ function App() {
     ],
     [timeLeft]
   );
+
+  if (!isKnownRoute) {
+    return <NotFoundPage />;
+  }
 
   return (
     <main className="wedding-page">
