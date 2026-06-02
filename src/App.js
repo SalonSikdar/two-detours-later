@@ -1,24 +1,168 @@
-import logo from './logo.svg';
+import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 
+const weddingDate = new Date('2027-01-08T07:00:00+05:30');
+
+function getTimeLeft() {
+  const difference = weddingDate.getTime() - Date.now();
+  const safeDifference = Math.max(difference, 0);
+
+  return {
+    days: Math.floor(safeDifference / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((safeDifference / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((safeDifference / (1000 * 60)) % 60),
+    seconds: Math.floor((safeDifference / 1000) % 60),
+  };
+}
+
 function App() {
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setTimeLeft(getTimeLeft());
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const countdown = useMemo(
+    () => [
+      { label: 'Days', value: timeLeft.days },
+      { label: 'Hours', value: timeLeft.hours },
+      { label: 'Minutes', value: timeLeft.minutes },
+      { label: 'Seconds', value: timeLeft.seconds },
+    ],
+    [timeLeft]
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+    <main className="wedding-page">
+      <nav className="site-nav" aria-label="Primary navigation">
+        <a className="brand" href="#home">
+          Two Detours Later
         </a>
-      </header>
-    </div>
+        <div className="nav-links">
+          <a href="#story">Story</a>
+          <a href="#journal">Blog</a>
+          <a href="#details">Details</a>
+        </div>
+      </nav>
+
+      <section className="hero" id="home">
+        <div className="hero-copy">
+          <p className="eyebrow">January 8, 2027 · 7:00 AM IST</p>
+          <h1>Saloni & Shyamal are getting married</h1>
+          <p className="hero-text">
+            A calm morning ceremony, a room full of favorite people, and the
+            beginning of the next beautiful detour.
+          </p>
+          <div className="hero-actions">
+            <a className="primary-action" href="#details">
+              View Details
+            </a>
+            <a className="secondary-action" href="#journal">
+              Read Updates
+            </a>
+          </div>
+        </div>
+
+        <div className="hero-image" aria-label="Wedding hero image space">
+          <div className="photo-placeholder">
+            <span>Hero Image</span>
+            <small>Add your favorite couple photo here</small>
+          </div>
+        </div>
+      </section>
+
+      <section className="countdown-section" aria-labelledby="countdown-title">
+        <div>
+          <p className="eyebrow">The Countdown</p>
+          <h2 id="countdown-title">Until the wedding morning</h2>
+        </div>
+        <div className="countdown-grid">
+          {countdown.map((item) => (
+            <div className="countdown-tile" key={item.label}>
+              <strong>{String(item.value).padStart(2, '0')}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="content-section story-section" id="story">
+        <div className="section-heading">
+          <p className="eyebrow">Our Story</p>
+          <h2>From a small hello to a lifetime promise</h2>
+        </div>
+        <div className="story-layout">
+          <p>
+            This space is for the story only the two of you could have written:
+            the first meeting, the early conversations, the trips, the laughter,
+            and the quiet moments that made everything feel certain.
+          </p>
+          <p>
+            Add a few photos, favorite memories, or a note to guests who have
+            been part of the journey. Keep it personal, warm, and unmistakably
+            yours.
+          </p>
+        </div>
+      </section>
+
+      <section className="content-section journal-section" id="journal">
+        <div className="section-heading">
+          <p className="eyebrow">Wedding Blog</p>
+          <h2>Notes, updates, and little behind-the-scenes moments</h2>
+        </div>
+        <div className="journal-grid">
+          <article>
+            <span>Planning</span>
+            <h3>The mood for the morning</h3>
+            <p>
+              Soft florals, warm light, classic silhouettes, and a celebration
+              that feels intimate from the first welcome.
+            </p>
+          </article>
+          <article>
+            <span>Travel</span>
+            <h3>Guest travel notes</h3>
+            <p>
+              Use this card for hotel ideas, airport tips, local transport, and
+              anything that makes arriving feel effortless.
+            </p>
+          </article>
+          <article>
+            <span>Updates</span>
+            <h3>What to expect next</h3>
+            <p>
+              Share RSVP reminders, outfit inspiration, ceremony timing, or
+              venue updates as the date gets closer.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="content-section details-section" id="details">
+        <div className="section-heading">
+          <p className="eyebrow">The Day</p>
+          <h2>Ceremony details</h2>
+        </div>
+        <div className="details-grid">
+          <div>
+            <span>Date & Time</span>
+            <strong>8 January 2027, 7:00 AM</strong>
+          </div>
+          <div>
+            <span>Venue</span>
+            <strong>Add venue name and address</strong>
+          </div>
+          <div>
+            <span>Dress Code</span>
+            <strong>Morning festive</strong>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
 

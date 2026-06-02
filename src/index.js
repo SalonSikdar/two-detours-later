@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import '@fontsource/della-respira';
+import '@fontsource/poiret-one';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
