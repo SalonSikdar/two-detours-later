@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { FaInstagram } from 'react-icons/fa';
+import { FaHeart, FaInstagram } from 'react-icons/fa';
 import './App.css';
 
 const weddingDate = new Date('2027-01-08T07:00:00+05:30');
@@ -41,7 +41,7 @@ function App() {
     <main className="wedding-page">
       <nav className="site-nav" aria-label="Primary navigation">
         <a className="brand" href="#home">
-          Two Detours Later
+          #TwoDetoursLater
         </a>
         <div className="nav-links">
           <a href="#story">Story</a>
@@ -80,7 +80,7 @@ function App() {
       <section className="countdown-section" aria-labelledby="countdown-title">
         <div>
           <p className="eyebrow">The Countdown</p>
-          <h2 id="countdown-title">Until the wedding morning</h2>
+          <h2 id="countdown-title">Until the DAY</h2>
         </div>
         <div className="countdown-grid">
           {countdown.map((item) => (
@@ -190,13 +190,16 @@ function App() {
       <footer className="site-footer">
         <div>
           <a className="footer-brand" href="#home">
-            Two Detours Later
+            #TwoDetoursLater
           </a>
-          <p>Made with love for Saloni & Shyamal.</p>
+          <p>
+            Made with <FaHeart className="footer-heart" aria-label="love" /> by
+            Gogo & Mithi.
+          </p>
         </div>
         <a
           className="instagram-link"
-          href="https://www.instagram.com/"
+          href="https://www.instagram.com/twodetourslater/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Visit our Instagram"
