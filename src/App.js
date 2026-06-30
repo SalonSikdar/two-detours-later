@@ -1,10 +1,23 @@
 import { useEffect, useMemo, useState } from 'react';
-import { FaHeart, FaInstagram } from 'react-icons/fa';
+import {
+  FaBookOpen,
+  FaBriefcase,
+  FaHeart,
+  FaInstagram,
+  FaLaptopCode,
+  FaLightbulb,
+  FaListUl,
+  FaMapMarkedAlt,
+  FaUtensils,
+} from 'react-icons/fa';
 import './App.css';
+import { blogs, blogCategories } from './blogs';
 
 const weddingDate = new Date('2027-01-08T07:00:00+05:30');
 const homePath = process.env.PUBLIC_URL || '/';
 const aboutPath = `${homePath === '/' ? '' : homePath}/about`;
+const archivesPath = `${homePath === '/' ? '' : homePath}/archives`;
+const itineraryPath = `${homePath === '/' ? '' : homePath}/itinerary`;
 
 function getTimeLeft() {
   const difference = weddingDate.getTime() - Date.now();
@@ -26,9 +39,9 @@ function SiteNav() {
       </a>
       <div className="nav-links">
         <a href={`${homePath}#story`}>Story</a>
-        <a href={aboutPath}>About Us</a>
-        <a href={`${homePath}#journal`}>Blog</a>
-        <a href={`${homePath}#itinerary`}>Itinerary</a>
+        <a href={aboutPath}>Lore</a>
+        <a href={archivesPath}>Archives</a>
+        <a href={itineraryPath}>Itinerary</a>
       </div>
     </nav>
   );
@@ -79,13 +92,13 @@ function NotFoundPage() {
   );
 }
 
-function AboutPage() {
+function Lore() {
   return (
     <main className="wedding-page">
       <SiteNav />
 
       <section className="about-hero">
-        <p className="eyebrow">About Us</p>
+        <p className="eyebrow">Lore</p>
         <h1>Two people, many detours, one very shared playlist.</h1>
         <p>
           A little more about Saloni, Shyamal, the life they are building, and
@@ -192,6 +205,218 @@ function AboutPage() {
   );
 }
 
+function formatDate(dateString) {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+const tagIconMap = {
+  recipes: <FaUtensils aria-hidden="true" />,
+  'our stories': <FaBookOpen aria-hidden="true" />,
+  'travel itineraries': <FaMapMarkedAlt aria-hidden="true" />,
+  workation: <FaLaptopCode aria-hidden="true" />,
+  hacks: <FaLightbulb aria-hidden="true" />,
+  'tech career': <FaBriefcase aria-hidden="true" />,
+};
+
+function ArchivePage() {
+  const [query, setQuery] = useState('');
+  const [activeTag, setActiveTag] = useState('');
+
+  const filteredBlogs = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    return blogs.filter((blog) => {
+      const matchesTag = activeTag ? blog.tags.includes(activeTag) : true;
+      const searchableText = `${blog.title} ${blog.description} ${blog.tags.join(' ')} ${blog.body}`.toLowerCase();
+      const matchesQuery = normalizedQuery ? searchableText.includes(normalizedQuery) : true;
+      return matchesTag && matchesQuery;
+    });
+  }, [query, activeTag]);
+
+  return (
+    <main className="wedding-page">
+      <SiteNav />
+
+      <section className="about-hero">
+        <p className="eyebrow">Archives</p>
+        <h1>Blog archives</h1>
+        <p>Search our stories, recipes, travel itineraries, workation notes, hacks, and tech career updates.</p>
+      </section>
+
+      <section className="archive-filters">
+        <div className="search-bar">
+          <input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search by title, description, tags, or content"
+            aria-label="Search blog archives"
+          />
+        </div>
+
+        <div className="tag-list" aria-label="Tag filters">
+          <button
+            type="button"
+            className={`tag-pill ${activeTag === '' ? 'active' : ''}`}
+            onClick={() => setActiveTag('')}
+          >
+            <div className="tag-icon">
+              <FaListUl aria-hidden="true" />
+            </div>
+            <span>All</span>
+          </button>
+          {blogCategories.map((tag) => (
+            <button
+              type="button"
+              key={tag}
+              className={`tag-pill ${activeTag === tag ? 'active' : ''}`}
+              onClick={() => setActiveTag(tag)}
+            >
+              <div className="tag-icon">
+                {tagIconMap[tag]}
+              </div>
+              <span>{tag}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="content-section archives-section">
+        {filteredBlogs.length > 0 ? (
+          <div className="archive-list">
+            {filteredBlogs.map((blog) => (
+              <article key={blog.id} className="archive-item">
+                <span>{blog.tags.join(' · ')}</span>
+                <h3>{blog.title}</h3>
+                <p>{blog.description}</p>
+                <div className="blog-meta">
+                  <time dateTime={blog.date}>{formatDate(blog.date)}</time>
+                </div>
+                <a className="secondary-action" href={`${archivesPath}/${blog.slug}`}>
+                  Read the full story
+                </a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p>No blogs matched your search. Try a different tag or keyword.</p>
+        )}
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
+function BlogDetailPage({ slug }) {
+  const blog = blogs.find((entry) => entry.slug === slug || entry.id === slug);
+
+  if (!blog) {
+    return <NotFoundPage />;
+  }
+
+  return (
+    <main className="wedding-page">
+      <SiteNav />
+
+      <div className="rsvp-banner">
+        <div>
+          <p className="eyebrow">RSVP</p>
+          <h2>{blog.title}</h2>
+        </div>
+        <a className="primary-action" href="#rsvp-form">
+          RSVP Now
+        </a>
+      </div>
+
+      <section className="content-section detail-page">
+        <div className="section-heading">
+          <span>{blog.tags.join(' · ')}</span>
+          <h2>{blog.title}</h2>
+          <p>{blog.description}</p>
+          <div className="blog-meta">
+            <time dateTime={blog.date}>{formatDate(blog.date)}</time>
+          </div>
+        </div>
+
+        <div className="blog-body" dangerouslySetInnerHTML={{ __html: blog.body }} />
+
+        <div className="detail-actions" id="rsvp-form">
+          <a className="primary-action" href="mailto:hello@twodetourslater.com?subject=RSVP">
+            RSVP Now
+          </a>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
+function ItineraryPage() {
+  return (
+    <main className="wedding-page">
+      <SiteNav />
+
+      <div className="rsvp-banner">
+        <div>
+          <p className="eyebrow">Itinerary</p>
+          <h2>A more detailed look at the wedding day</h2>
+        </div>
+        <a className="primary-action" href="#rsvp-form">
+          RSVP Now
+        </a>
+      </div>
+
+      <section className="content-section detail-page" id="details">
+        <div className="section-heading">
+          <p className="eyebrow">The Day</p>
+          <h2>Ceremony itinerary</h2>
+          <p>Everything guests need to know for the morning, from arrival to celebration.</p>
+        </div>
+
+        <div className="itinerary-grid">
+          <div>
+            <span>Date & Time</span>
+            <strong>8 January 2027, 7:00 AM</strong>
+          </div>
+          <div>
+            <span>Venue</span>
+            <strong>Add venue name and address</strong>
+          </div>
+          <div>
+            <span>Dress Code</span>
+            <strong>Morning festive</strong>
+          </div>
+          <div>
+            <span>Ceremony</span>
+            <strong>7:00 AM – 8:00 AM</strong>
+          </div>
+          <div>
+            <span>Reception</span>
+            <strong>8:30 AM – 10:00 AM</strong>
+          </div>
+          <div>
+            <span>Travel note</span>
+            <strong>Arrive early for parking and seating.</strong>
+          </div>
+        </div>
+
+        <div className="detail-actions">
+          <a className="primary-action" href="mailto:hello@twodetourslater.com?subject=RSVP">
+            RSVP Now
+          </a>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
 function WeddingPage() {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft);
 
@@ -229,10 +454,10 @@ function WeddingPage() {
             beginning of the next beautiful detour.
           </p>
           <div className="hero-actions">
-            <a className="primary-action" href="#itinerary">
+            <a className="primary-action" href={itineraryPath}>
               View Itinerary
             </a>
-            <a className="secondary-action" href="#journal">
+            <a className="secondary-action" href={archivesPath}>
               Read Updates
             </a>
           </div>
@@ -364,23 +589,42 @@ function WeddingPage() {
 function App() {
   const pathname = window.location.pathname;
 
-  function isKnownRoute(path) {
+  function getRoute(path) {
     const normalize = (p) => (p.endsWith('/') && p !== '/' ? p.slice(0, -1) : p);
     const p = normalize(path);
     const home = normalize(homePath);
     const about = normalize(aboutPath);
+    const archives = normalize(archivesPath);
+    const itinerary = normalize(itineraryPath);
 
-    if (p === about) return 'about';
-    if (p === home) return 'home';
-    return null;
+    if (p === about) return { page: 'about' };
+    if (p === home) return { page: 'home' };
+    if (p === archives) return { page: 'archives' };
+    if (p.startsWith(`${archives}/`)) {
+      return { page: 'archiveDetail', slug: p.slice(`${archives}/`.length) };
+    }
+    if (p === itinerary) return { page: 'itinerary' };
+    return { page: 'notfound' };
   }
 
-  const route = isKnownRoute(pathname);
-  if (route === 'about') {
-    return <AboutPage />;
+  const route = getRoute(pathname);
+  if (route.page === 'about') {
+    return <Lore />;
   }
 
-  if (route === 'home') {
+  if (route.page === 'archives') {
+    return <ArchivePage />;
+  }
+
+  if (route.page === 'archiveDetail') {
+    return <BlogDetailPage slug={route.slug} />;
+  }
+
+  if (route.page === 'itinerary') {
+    return <ItineraryPage />;
+  }
+
+  if (route.page === 'home') {
     return <WeddingPage />;
   }
 

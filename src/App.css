@@ -374,6 +374,141 @@ h3 {
   line-height: 1.65;
 }
 
+.archive-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(1rem, 5vw, 2rem);
+}
+
+.search-bar {
+  flex: 1 1 280px;
+  min-width: 220px;
+}
+
+.search-bar input {
+  width: 100%;
+  background: rgba(253, 252, 233, 0.9);
+  border: 1px solid rgba(90, 16, 32, 0.14);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding: 0.75rem 1rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.tag-pill {
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  justify-content: center;
+  padding: 0;
+  text-transform: none;
+  width: auto;
+}
+
+.tag-icon {
+  align-items: center;
+  background: rgba(253, 252, 233, 0.92);
+  border: 1px solid rgba(90, 16, 32, 0.14);
+  border-radius: 50%;
+  color: var(--ink);
+  display: inline-flex;
+  height: 3.5rem;
+  justify-content: center;
+  width: 3.5rem;
+}
+
+.tag-pill.active .tag-icon {
+  background: var(--wine);
+  border-color: var(--wine);
+  color: var(--gold);
+}
+
+.tag-icon svg {
+  font-size: 1.6rem;
+}
+
+.tag-pill span {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: none;
+  max-width: 5.5rem;
+}
+
+.archives-section {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.archive-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.archive-item {
+  background: rgba(204, 166, 129, 0.18);
+  border: 1px solid rgba(90, 16, 32, 0.14);
+  padding: 1.5rem;
+}
+
+.archive-item span,
+.blog-meta {
+  color: var(--teal);
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.85rem;
+  text-transform: uppercase;
+}
+
+.blog-body {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.detail-page {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.rsvp-banner {
+  align-items: center;
+  background: rgba(90, 16, 32, 0.06);
+  border-bottom: 1px solid rgba(90, 16, 32, 0.12);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1.5rem clamp(1rem, 5vw, 5.5rem);
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.detail-actions .primary-action {
+  margin-top: 0;
+}
+
 .itinerary-section {
   background: #085E55;
   color: #FDFCE9;;
