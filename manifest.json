@@ -1,0 +1,25 @@
+{
+  "short_name": "2 Detours Later",
+  "name": "Two Detours Later",
+  "icons": [
+    {
+      "src": "2detourslater.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "2detourslater.png",
+      "type": "image/png",
+      "sizes": "2000x2000"
+    },
+    {
+      "src": "2detourslater.png",
+      "type": "image/png",
+      "sizes": "2000x2000"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#085E55",
+  "background_color": "#FDFCE9"
+}

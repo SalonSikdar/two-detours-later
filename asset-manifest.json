@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6bb0b14b.css",
+    "main.js": "/static/js/main.08778027.js",
+    "static/js/453.0671a6c6.chunk.js": "/static/js/453.0671a6c6.chunk.js",
+    "static/media/della-respira-latin-400-normal.woff": "/static/media/della-respira-latin-400-normal.b9a229c39871178dbe59.woff",
+    "static/media/della-respira-latin-400-normal.woff2": "/static/media/della-respira-latin-400-normal.a52d2443ca758f48428a.woff2",
+    "static/media/poiret-one-latin-400-normal.woff": "/static/media/poiret-one-latin-400-normal.dd35eaa313a28f94b2d1.woff",
+    "static/media/poiret-one-latin-400-normal.woff2": "/static/media/poiret-one-latin-400-normal.c2f34fbf1da9d467be4f.woff2",
+    "static/media/poiret-one-latin-ext-400-normal.woff": "/static/media/poiret-one-latin-ext-400-normal.b8b5cbb3b51404abe2d4.woff",
+    "static/media/poiret-one-cyrillic-400-normal.woff": "/static/media/poiret-one-cyrillic-400-normal.eb69582102898ff964bf.woff",
+    "static/media/poiret-one-latin-ext-400-normal.woff2": "/static/media/poiret-one-latin-ext-400-normal.d16e758afe52ee4cdf69.woff2",
+    "static/media/poiret-one-cyrillic-400-normal.woff2": "/static/media/poiret-one-cyrillic-400-normal.3c85eb891787009cc963.woff2",
+    "index.html": "/index.html",
+    "main.6bb0b14b.css.map": "/static/css/main.6bb0b14b.css.map",
+    "main.08778027.js.map": "/static/js/main.08778027.js.map",
+    "453.0671a6c6.chunk.js.map": "/static/js/453.0671a6c6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6bb0b14b.css",
+    "static/js/main.08778027.js"
+  ]
+}
