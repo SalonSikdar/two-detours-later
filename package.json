@@ -1,6 +1,7 @@
 {
   "name": "two-detours-later",
   "version": "0.1.0",
+  "homepage": "https://www.twodetourslater.quest",
   "private": true,
   "dependencies": {
     "@fontsource/della-respira": "^5.2.7",
